@@ -1,5 +1,6 @@
 # LORDSHIPWEATHER.UK docker image (weewx)
 # Copied from mitct02/weewx and modified to work
+# source: https://github.com/tomdotorg/docker-weewx
 # first modified on 21/11/2025
 # copied to homepi on 
 # copied to zeropi on 
