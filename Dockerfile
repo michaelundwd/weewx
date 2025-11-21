@@ -97,7 +97,7 @@ FROM debian:bookworm-slim
     && cd /var/tmp \
     && rm -rf weewx-mqtt.zip weewx-mqtt-master \
     ## Interceptor Driver
-    && wget -O weewx-interceptor.zip https://github.com/matthewwall/weewx-interceptor/archive/master.zip
+    && wget -O weewx-interceptor.zip https://github.com/matthewwall/weewx-interceptor/archive/master.zip \
     && python3 ~/weewx/src/weectl.py extension install -y weewx-interceptor.zip \
     && rm -f master.zip \
     # Clean up all temp directories
