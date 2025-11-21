@@ -1,3 +1,10 @@
+# LORDSHIPWEATHER.UK docker image (weewx)
+# Copied from mitct02/weewx and modified to work
+# first modified on 21/11/2025
+# copied to homepi on 
+# copied to zeropi on 
+# this version last updated 21/11/2025 
+
 FROM debian:bookworm-slim
 
   LABEL maintainer="Tom Mitchell <tom@tom.org>"
@@ -5,10 +12,11 @@ FROM debian:bookworm-slim
   ENV TAG=v5.2.0
   ENV WEEWX_ROOT=/home/weewx/weewx-data
   ENV WEEWX_VERSION=5.2.0
+  ENV BELCHERTOWN_VERSION="v1.5"
   ENV HOME=/home/weewx
-  ENV TZ=America/New_York
+  ENV TZ=Europe/London
   ENV PATH=/usr/bin:$PATH
-  ENV LANG=en_US.UTF-8
+  ENV LANG=en_GB.UTF-8
 
   # Define build-time dependencies that can be removed after build
   ARG BUILD_DEPS="wget unzip git python3-dev libffi-dev libjpeg-dev gcc g++ build-essential zlib1g-dev"
@@ -73,13 +81,13 @@ FROM debian:bookworm-slim
   ## Install extensions
   RUN cd /var/tmp \
     && . /home/weewx/weewx-venv/bin/activate \
-    ## Belchertown extension
-    && wget https://github.com/poblabs/weewx-belchertown/releases/download/weewx-belchertown-1.3.1/weewx-belchertown-release.1.3.1.tar.gz \
-    && tar zxf weewx-belchertown-release.1.3.1.tar.gz \
-    && cd weewx-belchertown-master \
+    ## Belchertown extension - fixed version for now - use ENV version when debugged
+    && wget -O belchertown-new.tar.gz https://github.com/uajqq/weewx-belchertown-new/archive/refs/tags/v1.5.tar.gz \
+    && tar zxf belchertown-new.tar.gz \
+    && cd weewx-belchertown-new-master \
     && python3 ~/weewx/src/weectl.py extension install -y . \
     && cd /var/tmp \
-    && rm -rf weewx-belchertown-release.1.3.1.tar.gz weewx-belchertown-master \
+    && rm -rf belchertown-new.tar.gz weewx-belchertown-new-master \
     ## MQTT extension
     && wget -O weewx-mqtt.zip https://github.com/matthewwall/weewx-mqtt/archive/master.zip \
     && unzip -q weewx-mqtt.zip \
@@ -87,10 +95,10 @@ FROM debian:bookworm-slim
     && python3 ~/weewx/src/weectl.py extension install -y . \
     && cd /var/tmp \
     && rm -rf weewx-mqtt.zip weewx-mqtt-master \
-    ## WLL Driver
-    && wget -O WLLDriver.zip https://github.com/Drealine/weatherlinklive-driver-weewx/releases/download/2022.02.27-2/WLLDriver.zip \
-    && python3 ~/weewx/src/weectl.py extension install -y WLLDriver.zip \
-    && rm -f WLLDriver.zip \
+    ## Interceptor Driver
+    && wget -O weewx-interceptor.zip https://github.com/matthewwall/weewx-interceptor/archive/master.zip
+    && python3 ~/weewx/src/weectl.py extension install -y master.zip \
+    && rm -f master.zip \
     # Clean up all temp directories
     && rm -rf /tmp/* /var/tmp/* \
     # Clean up Python bytecode from extensions
