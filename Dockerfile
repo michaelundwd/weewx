@@ -35,7 +35,7 @@ FROM debian:bookworm-slim
           python3-setuptools \
           locales \
       && rm -rf /var/lib/apt/lists/* \
-      && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
+      && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
       && echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen \
       && echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
       && echo "nl_NL.UTF-8 UTF-8" >> /etc/locale.gen \
