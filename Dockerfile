@@ -18,7 +18,8 @@ FROM debian:bookworm-slim
   ENV TZ=Europe/London
   ENV PATH=/usr/bin:$PATH
   ENV LANG=en_GB.UTF-8
-
+  ENV WEEWX_UID=421
+  
   # Define build-time dependencies that can be removed after build
   ARG BUILD_DEPS="wget unzip git python3-dev libffi-dev libjpeg-dev gcc g++ build-essential zlib1g-dev"
 
@@ -40,8 +41,14 @@ FROM debian:bookworm-slim
       && echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
       && echo "nl_NL.UTF-8 UTF-8" >> /etc/locale.gen \
       && locale-gen \
-      && addgroup weewx \
-      && useradd -m -g weewx weewx \
+      
+      && addgroup --system --gid ${WEEWX_UID} weewx && \
+      && adduser --system --uid ${WEEWX_UID} --ingroup weewx weewx && \
+      
+      
+      
+#      && addgroup weewx \
+#      && useradd -m -g weewx weewx \
       && chown -R weewx:weewx /home/weewx \
       && chmod -R 755 /home/weewx
 
