@@ -41,14 +41,8 @@ FROM debian:bookworm-slim
       && echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
       && echo "nl_NL.UTF-8 UTF-8" >> /etc/locale.gen \
       && locale-gen \
-      
-      && addgroup --system --gid ${WEEWX_UID} weewx && \
-      && adduser --system --uid ${WEEWX_UID} --ingroup weewx weewx && \
-      
-      
-      
-#      && addgroup weewx \
-#      && useradd -m -g weewx weewx \
+      && addgroup weewx \
+      && useradd -m -g weewx weewx \
       && chown -R weewx:weewx /home/weewx \
       && chmod -R 755 /home/weewx
 
