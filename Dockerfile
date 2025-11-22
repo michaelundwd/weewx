@@ -85,7 +85,7 @@ FROM debian:bookworm-slim
     ## Belchertown extension - fixed version for now - use ENV version when debugged
     && wget -O belchertown-new.tar.gz https://github.com/uajqq/weewx-belchertown-new/archive/refs/tags/v1.5.tar.gz \
     && tar zxf belchertown-new.tar.gz \
-    && cd weewx-belchertown-new-master \
+    && cd weewx-belchertown-new-1.5 \
     && python3 ~/weewx/src/weectl.py extension install -y . \
     && cd /var/tmp \
 #    && rm -rf belchertown-new.tar.gz weewx-belchertown-new-master \
