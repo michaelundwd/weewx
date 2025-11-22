@@ -88,7 +88,7 @@ FROM debian:bookworm-slim
     && cd weewx-belchertown-new-master \
     && python3 ~/weewx/src/weectl.py extension install -y . \
     && cd /var/tmp \
-    && rm -rf belchertown-new.tar.gz weewx-belchertown-new-master \
+#    && rm -rf belchertown-new.tar.gz weewx-belchertown-new-master \
     ## MQTT extension
     && wget -O weewx-mqtt.zip https://github.com/matthewwall/weewx-mqtt/archive/master.zip \
     && unzip -q weewx-mqtt.zip \
@@ -101,7 +101,7 @@ FROM debian:bookworm-slim
     && python3 ~/weewx/src/weectl.py extension install -y weewx-interceptor.zip \
     && rm -f master.zip \
     # Clean up all temp directories
-    && rm -rf /tmp/* /var/tmp/* \
+#    && rm -rf /tmp/* /var/tmp/* \
     # Clean up Python bytecode from extensions
     && find /home/weewx -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true \
     && find /home/weewx -type f -name '*.pyc' -delete 2>/dev/null || true
