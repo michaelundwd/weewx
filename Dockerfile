@@ -4,7 +4,7 @@
 # first modified on 21/11/2025
 # copied to homepi on 
 # copied to zeropi on 
-# this version last updated 21/11/2025 
+# this version last updated 23/11/2025 
 
 FROM debian:bookworm-slim
 
@@ -35,6 +35,7 @@ FROM debian:bookworm-slim
           openssl \
           python3-setuptools \
           locales \
+          nano \
       && rm -rf /var/lib/apt/lists/* \
       && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
       && echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen \
@@ -84,6 +85,7 @@ FROM debian:bookworm-slim
   RUN cd /var/tmp \
     && . /home/weewx/weewx-venv/bin/activate \
     ## Belchertown extension - fixed version for now - use ENV version when debugged
+    ## Note that install can take place from .tar.gz and .zip files
     && wget -O belchertown-new.tar.gz https://github.com/uajqq/weewx-belchertown-new/archive/refs/tags/v1.5.tar.gz \
     && tar zxf belchertown-new.tar.gz \
     && cd weewx-belchertown-new-1.5 \
