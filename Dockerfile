@@ -8,7 +8,7 @@
 
 FROM debian:bookworm-slim
 
-  LABEL maintainer="Tom Mitchell <tom@tom.org>"
+  LABEL maintainer="Michael Underwood based on Tom Mitchell <tom@tom.org>"
   ENV VERSION=5.2.0
   ENV TAG=v5.2.0
   ENV WEEWX_ROOT=/home/weewx/weewx-data
@@ -17,7 +17,6 @@ FROM debian:bookworm-slim
   ENV HOME=/home/weewx
   ENV TZ=Europe/London
   ENV PATH=/usr/bin:$PATH
-  ENV PATH=/home/weewx/weewx/bin:$PATH
   ENV LANG=en_GB.UTF-8
   
   # Define build-time dependencies that can be removed after build
@@ -115,6 +114,7 @@ FROM debian:bookworm-slim
 
   USER weewx
 
-  COPY ./bin/run.sh $WEEWX_ROOT/bin/run.sh
+  ENV PATH=/home/weewx/weewx/bin:$PATH
+  ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh
   CMD ["sh", "-c", "$WEEWX_ROOT/bin/run.sh"]
   WORKDIR $WEEWX_ROOT
