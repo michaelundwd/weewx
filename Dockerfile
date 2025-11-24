@@ -16,7 +16,7 @@ FROM debian:bookworm-slim
   ENV BELCHERTOWN_VERSION="v1.5"
   ENV HOME=/home/weewx
   ENV TZ=Europe/London
-  ENV PATH=/usr/bin:$PATH
+#  ENV PATH=/usr/bin:$PATH
   ENV LANG=en_GB.UTF-8
   
   # Define build-time dependencies that can be removed after build
