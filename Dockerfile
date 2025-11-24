@@ -2,9 +2,9 @@
 # Copied from mitct02/weewx and modified to work
 # source: https://github.com/tomdotorg/docker-weewx
 # first modified on 21/11/2025
-# copied to homepi on 
+# copied to homepi on 23/11/2025
 # copied to zeropi on 
-# this version last updated 23/11/2025 
+# this version last updated 24/11/2025 
 
 FROM debian:bookworm-slim
 
@@ -18,7 +18,6 @@ FROM debian:bookworm-slim
   ENV TZ=Europe/London
   ENV PATH=/usr/bin:$PATH
   ENV LANG=en_GB.UTF-8
-  ENV WEEWX_UID=421
   
   # Define build-time dependencies that can be removed after build
   ARG BUILD_DEPS="wget unzip git python3-dev libffi-dev libjpeg-dev gcc g++ build-essential zlib1g-dev"
@@ -37,10 +36,10 @@ FROM debian:bookworm-slim
           locales \
           nano \
       && rm -rf /var/lib/apt/lists/* \
-      && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+      # && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
       && echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen \
-      && echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
-      && echo "nl_NL.UTF-8 UTF-8" >> /etc/locale.gen \
+      # && echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
+      # && echo "nl_NL.UTF-8 UTF-8" >> /etc/locale.gen \
       && locale-gen \
       && addgroup weewx \
       && useradd -m -g weewx weewx \
