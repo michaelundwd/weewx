@@ -114,7 +114,7 @@ FROM debian:bookworm-slim
 
   USER weewx
 
-  ENV PATH="/home/weewx/weewx/bin:$PATH"
-  ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh
+  ENV PATH="$HOME/weewx/bin:$PATH"
+  # ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh #use the modified one in $WEEWX_ROOT
   CMD ["sh", "-c", "$WEEWX_ROOT/bin/run.sh"]
   WORKDIR $WEEWX_ROOT
