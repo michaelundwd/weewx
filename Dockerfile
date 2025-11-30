@@ -4,7 +4,7 @@
 # first modified on 21/11/2025
 # copied to homepi on 23/11/2025
 # copied to zeropi on 
-# this version last updated 24/11/2025 
+# this version last updated 30/11/2025 for Belchertown 1.6
 
 FROM debian:bookworm-slim
 
@@ -13,7 +13,7 @@ FROM debian:bookworm-slim
   ENV TAG=v5.2.0
   ENV WEEWX_ROOT=/home/weewx/weewx-data
   ENV WEEWX_VERSION=5.2.0
-  ENV BELCHERTOWN_VERSION="v1.5"
+  ENV BELCHERTOWN_VERSION="v1.6"
   ENV HOME=/home/weewx
   ENV TZ=Europe/London
 #  ENV PATH=/usr/bin:$PATH
@@ -80,11 +80,11 @@ FROM debian:bookworm-slim
   ## Install extensions
   RUN cd /var/tmp \
     && . /home/weewx/weewx-venv/bin/activate \
-    ## Belchertown extension - fixed version for now - use ENV version when debugged
+    ## Belchertown extension - fixed version number for now - use ENV version when debugged
     ## Note that install can take place from .tar.gz and .zip files
-    && wget -O belchertown-new.tar.gz https://github.com/uajqq/weewx-belchertown-new/archive/refs/tags/v1.5.tar.gz \
+    && wget -O belchertown-new.tar.gz https://github.com/uajqq/weewx-belchertown-new/archive/refs/tags/v1.6.tar.gz \
     && tar zxf belchertown-new.tar.gz \
-    && cd weewx-belchertown-new-1.5 \
+    && cd weewx-belchertown-new-1.6 \
     && python3 ~/weewx/src/weectl.py extension install -y . \
     && cd /var/tmp \
     && rm -rf belchertown-new.tar.gz weewx-belchertown-new-master \
