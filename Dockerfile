@@ -113,7 +113,7 @@ FROM debian:bookworm-slim
 
   USER weewx
 
-  ENV PATH="$WEEWX_ROOT/weewx/scripts:$PATH"
-  COPY ./bin/run.sh $WEEWX_ROOT/scripts/run.sh
-  CMD ["sh", "-c", "$WEEWX_ROOT/scripts/run.sh"]
+  ENV PATH="/home/weewx/weewx-data/scripts:$PATH"
+  COPY ./bin/run.sh "/home/weewx/weewx-data/scripts/run.sh
+  CMD ["sh", "-c", "/home/weewx/weewx-data/scripts/run.sh"]
   WORKDIR $WEEWX_ROOT
