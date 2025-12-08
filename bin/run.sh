@@ -13,6 +13,7 @@ cd $WEEWX_ROOT
 # add paths for 
 PATH="$WEEWX_ROOT/bin:$PATH"
 PATH="$WEEWX_ROOT/bin/user:$PATH"
+PATH="$WEEWX_ROOT/scripts:$PATH"
 
 while true; do
   . /home/weewx/weewx-venv/bin/activate
