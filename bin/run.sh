@@ -10,10 +10,14 @@ echo "weewx is in $WEEWX_ROOT"
 echo "TZ=$TZ"
 cd $WEEWX_ROOT
 
-# add paths for 
+# add paths for
+echo $PATH
 PATH="$WEEWX_ROOT/bin:$PATH"
+echo $PATH
 PATH="$WEEWX_ROOT/bin/user:$PATH"
+echo $PATH
 PATH="$WEEWX_ROOT/scripts:$PATH"
+echo $PATH
 
 while true; do
   . /home/weewx/weewx-venv/bin/activate
