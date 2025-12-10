@@ -8,7 +8,6 @@ echo "HOME=$HOME"
 echo "using $CONF_FILE"
 echo "weewx is in $WEEWX_ROOT"
 echo "TZ=$TZ"
-cd $WEEWX_ROOT
 
 # add paths for
 echo $PATH
@@ -18,6 +17,8 @@ PATH="$WEEWX_ROOT/bin/user:$PATH"
 echo $PATH
 PATH="$WEEWX_ROOT/scripts:$PATH"
 echo $PATH
+
+cd $WEEWX_ROOT
 
 while true; do
   . /home/weewx/weewx-venv/bin/activate
