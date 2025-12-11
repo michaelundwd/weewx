@@ -114,14 +114,15 @@ FROM debian:bookworm-slim
   USER weewx
 
   # add PATH to bash for shell login
-  RUN echo "export PATH=$PATH:$WEEWX_ROOT/bin" >> ~/.bashrc \
-           "export PATH=$PATH:$WEEWX_ROOT/bin/user" >> ~/.bashrc \
-           "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
+  # RUN echo "export PATH=$PATH:$WEEWX_ROOT/bin" >> ~/.bashrc \
+  #          "export PATH=$PATH:$WEEWX_ROOT/bin/user" >> ~/.bashrc \
+  #          "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
 
   
-  # ENV PATH="$HOME/weewx/bin:$PATH"
+  ENV PATH="$HOME/weewx/bin:$PATH"
+  ENV PATH="$WEEWX_ROOT/scripts:$PATH"
   # ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh
   # CMD ["sh", "-c", "$WEEWX_ROOT/bin/run.sh"]
-  ENTRYPOINT ["$WEEWX_ROOT/bin//entrypoint.sh"]
+  ENTRYPOINT ["$WEEWX_ROOT/bin/entrypoint.sh"]
   # CMD [ "$WEEWX_ROOT/weewx.conf"]
   WORKDIR $WEEWX_ROOT
