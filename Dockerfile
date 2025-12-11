@@ -123,6 +123,6 @@ FROM debian:bookworm-slim
   ENV PATH="$WEEWX_ROOT/scripts:$PATH"
   # ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh
   # CMD ["sh", "-c", "$WEEWX_ROOT/bin/run.sh"]
-  ENTRYPOINT ["$WEEWX_ROOT/bin/entrypoint.sh"]
+  ENTRYPOINT ["sh", "-c", "$WEEWX_ROOT/bin/entrypoint.sh"]
   # CMD [ "$WEEWX_ROOT/weewx.conf"]
   WORKDIR $WEEWX_ROOT
