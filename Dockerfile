@@ -11,10 +11,10 @@ FROM debian:bookworm-slim
   LABEL maintainer="Michael Underwood based on Tom Mitchell <tom@tom.org>"
   ENV VERSION=5.2.0
   ENV TAG=v5.2.0
-  ENV WEEWX_ROOT=/home/weewx/weewx-data
+  ENV HOME=/home/weewx
+  ENV WEEWX_ROOT=$HOME/weewx-data
   ENV WEEWX_VERSION=5.2.0
   ENV BELCHERTOWN_VERSION="v1.6"
-  ENV HOME=/home/weewx
   ENV TZ=Europe/London
   ENV LANG=en_GB.UTF-8
   
@@ -115,9 +115,10 @@ FROM debian:bookworm-slim
 
 # set up PATH for the container in this order
   ENV PATH="$HOME/weewx/bin:$PATH"
+  ENV PATH="$WEEWX_ROOT/scripts/weewx/bin:$PATH"
   
 # add PATH to bash for shell login
-  RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
+#  RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
     
 #   ENV PATH="$WEEWX_ROOT/scripts:$PATH"
   # ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh
