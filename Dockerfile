@@ -113,13 +113,12 @@ FROM debian:bookworm-slim
 
   USER weewx
 
+# set up PATH for the container in this order
+  ENV PATH="$HOME/weewx/bin:$PATH"
+  
 # add PATH to bash for shell login
-#  ENV PATH="$HOME/weewx/bin:$PATH"
-  RUN echo "export PATH=$PATH:$HOME/weewx/bin"
   RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
-  RUN echo $PATH
-  
-  
+    
 #   ENV PATH="$WEEWX_ROOT/scripts:$PATH"
   # ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh
   # CMD ["sh", "-c", "$WEEWX_ROOT/bin/run.sh"]
