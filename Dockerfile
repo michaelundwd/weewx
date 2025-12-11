@@ -119,7 +119,9 @@ FROM debian:bookworm-slim
            "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
 
   
-  ENV PATH="$HOME/weewx/bin:$PATH"
-  ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh
-  CMD ["sh", "-c", "$WEEWX_ROOT/bin/run.sh"]
+  # ENV PATH="$HOME/weewx/bin:$PATH"
+  # ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh
+  # CMD ["sh", "-c", "$WEEWX_ROOT/bin/run.sh"]
+  ENTRYPOINT  [""$WEEWX_ROOT/bin//entrypoint.sh"]
+  # CMD [ "$WEEWX_ROOT/weewx.conf"]
   WORKDIR $WEEWX_ROOT
