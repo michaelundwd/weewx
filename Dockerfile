@@ -16,7 +16,6 @@ FROM debian:bookworm-slim
   ENV BELCHERTOWN_VERSION="v1.6"
   ENV HOME=/home/weewx
   ENV TZ=Europe/London
-#  ENV PATH=/usr/bin:$PATH
   ENV LANG=en_GB.UTF-8
   
   # Define build-time dependencies that can be removed after build
@@ -114,7 +113,13 @@ FROM debian:bookworm-slim
 
   USER weewx
 
-  # ENV PATH="$HOME/weewx/bin:$PATH"
+  # add PATH to bash for shell login
+  RUN echo "export PATH=$PATH:$WEEWX_ROOT/bin" >> ~/.bashrc \
+           "export PATH=$PATH:$WEEWX_ROOT/bin/user" >> ~/.bashrc \
+           "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
+
+  
+  ENV PATH="$HOME/weewx/bin:$PATH"
   ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh
   CMD ["sh", "-c", "$WEEWX_ROOT/bin/run.sh"]
   WORKDIR $WEEWX_ROOT
