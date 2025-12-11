@@ -115,9 +115,10 @@ FROM debian:bookworm-slim
 
 # add PATH to bash for shell login
 #  ENV PATH="$HOME/weewx/bin:$PATH"
-  RUN echo "export PATH=$PATH:$HOME/weewx/bin"
-  RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
-
+  RUN echo "export PATH=$PATH:$HOME/weewx/bin" && /
+           "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc &&/
+           cat $PATH
+  
   
 #   ENV PATH="$WEEWX_ROOT/scripts:$PATH"
   # ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh
