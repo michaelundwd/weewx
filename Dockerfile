@@ -115,10 +115,9 @@ FROM debian:bookworm-slim
 
 # set up PATH for the container in this order
   ENV PATH="$HOME/weewx/bin:$PATH"
-  ENV PATH="$WEEWX_ROOT/scripts/weewx/bin:$PATH"
   
-# add PATH to bash for shell login
-#  RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
+# add PATH to scripts for shell login
+  RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
     
 #   ENV PATH="$WEEWX_ROOT/scripts:$PATH"
   # ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh
