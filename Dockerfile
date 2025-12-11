@@ -114,7 +114,8 @@ FROM debian:bookworm-slim
   USER weewx
 
 # add PATH to bash for shell login
-  ENV PATH="$HOME/weewx/bin:$PATH"
+#  ENV PATH="$HOME/weewx/bin:$PATH"
+  RUN echo "export PATH="$PATH:$HOME/weewx/bin"
   RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
 
   
