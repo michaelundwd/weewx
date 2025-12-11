@@ -6,7 +6,7 @@
 # copied to zeropi on 
 # this version last updated 30/11/2025 for Belchertown 1.6
 
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
   LABEL maintainer="Michael Underwood based on Tom Mitchell <tom@tom.org>"
   ENV VERSION=5.2.0
@@ -113,15 +113,12 @@ FROM debian:bookworm-slim
 
   USER weewx
 
-# set up PATH for the container in this order
+  # set up PATH for the container in this order
   ENV PATH="$HOME/weewx/bin:$PATH"
   
-# add PATH to scripts for shell login
+  # add PATH to scripts for shell login
   RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
     
-#   ENV PATH="$WEEWX_ROOT/scripts:$PATH"
-  # ADD ./bin/run.sh $WEEWX_ROOT/bin/run.sh
-  # CMD ["sh", "-c", "$WEEWX_ROOT/bin/run.sh"]
+  #start container using entrypoint located in the host
   ENTRYPOINT ["sh", "-c", "$WEEWX_ROOT/bin/entrypoint.sh"]
-  # CMD [ "$WEEWX_ROOT/weewx.conf"]
   WORKDIR $WEEWX_ROOT
