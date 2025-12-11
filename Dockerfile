@@ -2,9 +2,9 @@
 # Copied from mitct02/weewx and modified to work
 # source: https://github.com/tomdotorg/docker-weewx
 # first modified on 21/11/2025
-# copied to homepi on 23/11/2025
+# copied to homepi on 11/12/2025
 # copied to zeropi on 
-# this version last updated 30/11/2025 for Belchertown 1.6
+# this version last updated 11/12/2025 for Belchertown 1.6 and debian:trixie-slim
 
 FROM debian:trixie-slim
 
@@ -120,5 +120,5 @@ FROM debian:trixie-slim
   RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
     
   #start container using entrypoint located in the host
-  ENTRYPOINT ["sh", "-c", "$WEEWX_ROOT/bin/entrypoint.sh"]
+  ENTRYPOINT ["sh", "-c", "$WEEWX_ROOT/scripts/entrypoint.sh"]
   WORKDIR $WEEWX_ROOT
