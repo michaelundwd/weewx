@@ -117,7 +117,7 @@ FROM debian:bookworm-slim
 #  ENV PATH="$HOME/weewx/bin:$PATH"
   RUN echo "export PATH=$PATH:$HOME/weewx/bin"
   RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
-  RUN cat $PATH
+  RUN echo $PATH
   
   
 #   ENV PATH="$WEEWX_ROOT/scripts:$PATH"
