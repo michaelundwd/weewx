@@ -112,5 +112,6 @@ FROM debian:trixie-slim
     && echo "export . ~/weewx-venv/bin/activate" >> ~/.bashrc
     
   #start container using entrypoint located in the host
-  ENTRYPOINT ["sh", "-c", "$WEEWX_ROOT/scripts/entrypoint.sh"]
+  # ENTRYPOINT ["sh", "-c", "$WEEWX_ROOT/scripts/entrypoint.sh"]
+  ENTRYPOINT ["$WEEWX_ROOT/scripts/entrypoint.sh"]
   WORKDIR $WEEWX_ROOT
