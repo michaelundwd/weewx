@@ -60,7 +60,7 @@ FROM debian:trixie-slim
           db-sqlite3 \
           requests
 
-  RUN git clone https://github.com/weewx/weewx ~/weewx \
+  RUN git clone https://github.com/weewx/weewx.git ~/weewx \
       && cd ~/weewx \
       && git checkout $TAG \
       && rm -rf ~/weewx/.git \
