@@ -104,12 +104,12 @@ FROM debian:trixie-slim
 
   USER weewx
 
-  # set up PATH for the container in this order
+  # set up PATH for bin folder first
   ENV PATH="$HOME/weewx/bin:$PATH"
   
-  # add PATH to scripts for shell login
+  # modify .bashrc to include path to scripts and auto-activate weewx virtual environment on shell login
   RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc \
-    && echo "export . ~/weewx-venv/bin/activate" >> ~/.bashrc
+    && echo " . ~/weewx-venv/bin/activate" >> ~/.bashrc
     
   #start container using entrypoint located in the host
   # ENTRYPOINT ["sh", "-c", "$WEEWX_ROOT/scripts/entrypoint.sh"]
