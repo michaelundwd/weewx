@@ -108,7 +108,8 @@ FROM debian:trixie-slim
   ENV PATH="$HOME/weewx/bin:$PATH"
   
   # add PATH to scripts for shell login
-  RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc
+  RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc \
+    && echo "export . ~/weewx-venv/bin/activate" >> ~/.bashrc
     
   #start container using entrypoint located in the host
   ENTRYPOINT ["sh", "-c", "$WEEWX_ROOT/scripts/entrypoint.sh"]
