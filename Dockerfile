@@ -98,7 +98,7 @@ FROM debian:trixie-slim
     && wget -O weewx-mqtt.zip https://github.com/matthewwall/weewx-mqtt/archive/master.zip \
 
     && python3 ~/weewx/src/weectl.py extension install -y weewx-mqtt.zip \
-    && rm -f weewx-mqtt \
+    && rm -f weewx-mqtt.zip master.zip\
 
     # && unzip -q weewx-mqtt.zip \
     # && cd weewx-mqtt-master \
@@ -110,6 +110,7 @@ FROM debian:trixie-slim
     && wget -O weewx-interceptor.zip https://github.com/matthewwall/weewx-interceptor/archive/master.zip \
     && python3 ~/weewx/src/weectl.py extension install -y weewx-interceptor.zip \
     && rm -f master.zip \
+    
     # Clean up all temp directories
     && rm -rf /tmp/* /var/tmp/* \
     # Clean up Python bytecode from extensions
