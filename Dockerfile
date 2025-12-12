@@ -24,16 +24,16 @@ FROM debian:trixie-slim
   RUN apt-get update \
       && apt-get install --no-install-recommends -y \
           $BUILD_DEPS \
-          python3 \
-          python3-pip \
-          python3-venv \
-          tzdata \
-          rsync \
-          openssh-client \
-          openssl \
-          python3-setuptools \
           locales \
           nano \
+          openssh-client \
+          openssl \
+          python3 \
+          python3-pip \
+          python3-setuptools \
+          python3-venv \
+          rsync \
+          tzdata \
       && rm -rf /var/lib/apt/lists/* \
       && echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen \
       && locale-gen \
@@ -49,15 +49,15 @@ FROM debian:trixie-slim
 
   RUN . /home/weewx/weewx-venv/bin/activate \
       && python3 -m pip install --no-cache-dir \
-          Pillow \
-          CT3 \
           configobj \
+          CT3 \
+          db-sqlite3 \
+          ephem \
           paho-mqtt \
+          Pillow \
           pyserial \
           pyusb \
-          ephem \
           PyMySQL \
-          db-sqlite3 \
           requests
 
   RUN git clone https://github.com/weewx/weewx.git ~/weewx \
@@ -83,12 +83,12 @@ FROM debian:trixie-slim
     ## Note that install can take place from .tar.gz and .zip files
     && wget -O belchertown-new.tar.gz https://github.com/uajqq/weewx-belchertown-new/archive/refs/tags/v1.6.tar.gz \
     && python3 ~/weewx/src/weectl.py extension install -y belchertown-new.tar.gz \
-    ## MQTT extension
-    && wget -O weewx-mqtt.zip https://github.com/matthewwall/weewx-mqtt/archive/master.zip \
-    && python3 ~/weewx/src/weectl.py extension install -y weewx-mqtt.zip \
     ## Interceptor Driver
     && wget -O weewx-interceptor.zip https://github.com/matthewwall/weewx-interceptor/archive/master.zip \
     && python3 ~/weewx/src/weectl.py extension install -y weewx-interceptor.zip \
+    ## MQTT extension
+    && wget -O weewx-mqtt.zip https://github.com/matthewwall/weewx-mqtt/archive/master.zip \
+    && python3 ~/weewx/src/weectl.py extension install -y weewx-mqtt.zip \
     # Clean up all temp directories
     && rm -rf /tmp/* /var/tmp/* \
     # Clean up Python bytecode from extensions
@@ -111,7 +111,6 @@ FROM debian:trixie-slim
   RUN echo "export PATH=$PATH:$WEEWX_ROOT/scripts" >> ~/.bashrc \
     && echo " . ~/weewx-venv/bin/activate" >> ~/.bashrc
     
-  #start container using entrypoint located in the host
-  # ENTRYPOINT ["sh", "-c", "$WEEWX_ROOT/scripts/entrypoint.sh"]
+  #start container using entrypoint located in the host where it can be edited directly
   ENTRYPOINT ["$WEEWX_ROOT/scripts/entrypoint.sh"]
   WORKDIR $WEEWX_ROOT
