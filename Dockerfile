@@ -49,7 +49,6 @@ FROM debian:trixie-slim
 
   RUN . /home/weewx/weewx-venv/bin/activate \
       && python3 -m pip install --no-cache-dir \
-          configobj \
           CT3 \
           db-sqlite3 \
           ephem \
@@ -58,6 +57,7 @@ FROM debian:trixie-slim
           PyMySQL \
           pyserial \
           pyusb \
+          configobj \
           requests
 
   RUN git clone https://github.com/weewx/weewx.git ~/weewx \
