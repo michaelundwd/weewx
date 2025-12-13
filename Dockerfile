@@ -4,7 +4,7 @@
 # first modified on 21/11/2025
 # copied to homepi on 11/12/2025
 # copied to zeropi on 
-# this version last updated 11/12/2025 for Belchertown 1.6 and debian:trixie-slim
+# this version last updated 12/12/2025 for debian:trixie, Belchertown 1.6 and auto-activate weewx venv
 
 FROM debian:trixie-slim
 
@@ -112,5 +112,6 @@ FROM debian:trixie-slim
     && echo " . ~/weewx-venv/bin/activate" >> ~/.bashrc
     
   #start container using entrypoint located in the host where it can be edited directly
-  ENTRYPOINT ["$WEEWX_ROOT/scripts/entrypoint.sh"]
+  ENTRYPOINT ["/home/weewx/weewx-data/scripts/entrypoint.sh"]
+  # ENTRYPOINT ["$WEEWX_ROOT/scripts/entrypoint.sh"]
   WORKDIR $WEEWX_ROOT
