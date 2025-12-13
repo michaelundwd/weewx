@@ -55,9 +55,9 @@ FROM debian:trixie-slim
           ephem \
           paho-mqtt \
           Pillow \
+          PyMySQL \
           pyserial \
           pyusb \
-          PyMySQL \
           requests
 
   RUN git clone https://github.com/weewx/weewx.git ~/weewx \
