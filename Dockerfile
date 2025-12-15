@@ -4,12 +4,12 @@
 # first modified on 21/11/2025
 # copied to homepi on 11/12/2025
 # copied to zeropi on 
-# this version last updated 12/12/2025 for debian:trixie, Belchertown 1.6 and auto-activate weewx venv
+# this version last updated 15/12/2025 for debian:trixie, Belchertown 1.6 and auto-activate weewx venv; renamed ENV VERSION=v0
 
 FROM debian:trixie-slim
 
   LABEL maintainer="Michael Underwood based on Tom Mitchell <tom@tom.org>"
-  ENV VERSION=5.2.0
+  ENV VERSION=v0
   ENV TAG=v5.2.0
   ENV HOME=/home/weewx
   ENV WEEWX_ROOT=$HOME/weewx-data
@@ -49,6 +49,7 @@ FROM debian:trixie-slim
 
   RUN . /home/weewx/weewx-venv/bin/activate \
       && python3 -m pip install --no-cache-dir \
+          configobj \
           CT3 \
           db-sqlite3 \
           ephem \
@@ -57,7 +58,6 @@ FROM debian:trixie-slim
           PyMySQL \
           pyserial \
           pyusb \
-          configobj \
           requests
 
   RUN git clone https://github.com/weewx/weewx.git ~/weewx \
