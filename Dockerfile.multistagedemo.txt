@@ -7,6 +7,10 @@
 #       https://pmac.io/2019/02/multi-stage-dockerfile-and-python-virtualenv/
 #       https://hub.docker.com/_/python
 
+# as of December python 3.14 is the latest stable version
+# there are python systems based on trixie as in 3.14-trixie and 3.14-slim-trixie
+# called as FROM:python:3.14-trixie or python-3.14-slim-trixie
+
 # mju use as potential basis for multistage dockerfile
 
 FROM python:3-stretch AS builder
