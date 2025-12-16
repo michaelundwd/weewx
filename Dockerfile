@@ -4,12 +4,12 @@
 # first modified on 21/11/2025
 # copied to homepi on 11/12/2025
 # copied to zeropi on 
-# this version last updated 15/12/2025 for debian:trixie, Belchertown 1.6 and auto-activate weewx venv; renamed ENV VERSION=v0
+# this version last updated 16/12/2025 to be used as the basis of a multi-stage version of the image - v1
 
 FROM debian:trixie-slim
 
-  LABEL maintainer="Michael Underwood based on Tom Mitchell <tom@tom.org>"
-  ENV VERSION=v0
+  LABEL maintainer="Michael Underwood"
+  ENV VERSION=v1
   ENV TAG=v5.2.0
   ENV HOME=/home/weewx
   ENV WEEWX_ROOT=$HOME/weewx-data
