@@ -1,0 +1,4 @@
+workflow to build a weewx_52_b16:v<n>
+
+docker build --tag mjuwx/weewx_52_b16:v<n> https://github.com/michaelundwd/weewx.git
+docker push mjuwx/weewx_52_b16:v<n>
